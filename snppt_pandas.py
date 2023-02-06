@@ -22,6 +22,9 @@ df = pd.DataFrame({
 })
 df
 
+
+
+#%%
 """## Pandas DataFrame: Rename multiple Columns"""
 
 import pandas as pd
