@@ -1,6 +1,8 @@
 #%%
 # Visualization: Histogram in Altair
+!pip install vega_datasets
 
+#%%
 # load an example dataset
 from vega_datasets import data
 cars = data.cars()
@@ -178,3 +180,4 @@ histogram = alt.Chart(cars).mark_bar().encode(
 ).transform_filter(interval)
 
 points & histogram
+# %%
