@@ -1,5 +1,3 @@
-#%%i
-import pandas as pd
 #%%
 # -*- coding: utf-8 -*-
 """pandas.ipynb
@@ -39,6 +37,9 @@ df.rename(columns={
 }, inplace=True)
 df
 
+
+
+#%%
 """## Pandas DataFrame: Query by regexp (regular expression)"""
 
 import pandas as pd
@@ -49,6 +50,9 @@ df = pd.DataFrame({
 
 df[df.last_name.str.match('.*onno.*')]
 
+
+
+#%%
 """## Pandas DataFrame: Query by variable value
 
 Evaluate a variable as the value to find.
@@ -63,6 +67,9 @@ df = pd.DataFrame({
 foo = 'Connor'
 df.query('last_name == @foo')
 
+
+
+#%%
 """## Pandas DataFrame: Query using variable value as a column name
 
 Evaluate a variable, to use its value as the name of a column in a query.
@@ -79,6 +86,9 @@ df = pd.DataFrame(data={
 column_name = 'first_name'
 df.query(f"`{column_name}` == 'John'")
 
+
+
+#%%
 """## Pandas DataFrame: Query by Timestamp above a value"""
 
 import pandas as pd
@@ -91,6 +101,9 @@ df['time'] = pd.to_datetime(df.time)
 
 df.query('time >= "2022-09-14 00:52:30-07:00"')
 
+
+
+#%%
 """## Pandas DataFrame: Query for Timestamp between two values"""
 
 import pandas as pd
@@ -106,6 +119,9 @@ end_ts = '2022-09-14 00:54:00-07:00'
 
 df.query('@begin_ts <= time < @end_ts')
 
+
+
+#%%
 """## Pandas DataFrame: Filter by Timestamp in DatetimeIndex using `.loc[]`"""
 
 import pandas as pd
@@ -119,6 +135,9 @@ df.set_index('time', inplace=True)
 
 df.loc['2022-09-14':'2022-09-14 00:53']
 
+
+
+#%%
 """## Pandas DataFrame: Filter by Timestamp using TimeDelta string"""
 
 import pandas as pd
@@ -139,6 +158,9 @@ def rows_in_time_range(df, time_column, start_ts_str, timedelta_str):
 
 rows_in_time_range(df, 'time', '2022-09-14 00:00', '52 minutes 31 seconds')
 
+
+
+#%%
 """## Pandas: Describe Timestamp values in a column"""
 
 import pandas as pd
@@ -151,6 +173,9 @@ df['time'] = pd.to_datetime(df.time)
 
 df['time'].describe(datetime_is_numeric=True)
 
+
+
+#%%
 """## Pandas DataFrame: Explode a column containing dictionary values into multiple columns
 
 This code transforms or splits the dictionary column into many columns.
@@ -169,6 +194,9 @@ df = pd.DataFrame({
 
 pd.concat([df.drop(['dict'], axis=1), df['dict'].apply(pd.Series)], axis=1)
 
+
+
+#%%
 """## Pandas DataFrame: Extract values using regexp (regular expression)"""
 
 import pandas as pd
@@ -178,6 +206,9 @@ df = pd.DataFrame({
 
 df['request'].str.extract('GET /([^?]+)\?', expand=True)
 
+
+
+#%%
 """## Pandas Timestamp: Convert string to Timestamp, using date only
 
 I.e. Midnight on the given date.
@@ -187,12 +218,18 @@ import pandas as pd
 
 pd.Timestamp('9/27/22').tz_localize('US/Pacific')
 
+
+
+#%%
 """## Pandas Timestamp: Convert string to Timestamp"""
 
 import pandas as pd
 
 pd.Timestamp('9/27/22 06:59').tz_localize('US/Pacific')
 
+
+
+#%%
 """## Pandas: Create a TimeDelta using `unit`
 
 From an integer.
@@ -203,6 +240,9 @@ import pandas as pd
 
 pd.to_timedelta(1, unit='h')
 
+
+
+#%%
 """## Pandas: Create a TimeDelta using available kwargs
 
 Example keyworded args: {days, seconds, microseconds, milliseconds, minutes, hours, weeks}
@@ -212,12 +252,18 @@ import pandas as pd
 
 pd.Timedelta(days=2)
 
+
+
+#%%
 """## Pandas: Create a TimeDelta from a string"""
 
 import pandas as pd
 
 pd.Timedelta('2 days 2 hours 15 minutes 30 seconds')
 
+
+
+#%%
 """## Pandas: Replace NaN values in a Column"""
 
 import numpy as np
@@ -228,6 +274,9 @@ df = pd.DataFrame({
 
 df['dogs'].replace(np.nan, 0, regex=True)
 
+
+
+#%%
 """## Pandas DataFrame: Drop duplicate rows"""
 
 import pandas as pd
@@ -239,6 +288,9 @@ df.set_index('last_name', inplace=True)
 
 df.loc[~df.index.duplicated(), :]
 
+
+
+#%%
 """## Pandas DataFrame: Ignore one Column"""
 
 import pandas as pd
@@ -249,6 +301,9 @@ df = pd.DataFrame({
 
 df.loc[:, df.columns!='last_name']
 
+
+
+#%%
 """## Pandas DataFrame: Intersect Indexes"""
 
 import pandas as pd
@@ -266,6 +321,9 @@ buckaroo_df.set_index('first_name', inplace=True)
 
 terminator_df.index.intersection(buckaroo_df.index).shape
 
+
+
+#%%
 """## Pandas DataFrame: Select all rows from A that are not in B, using the index"""
 
 import pandas as pd
@@ -283,6 +341,9 @@ buckaroo_df.set_index('first_name', inplace=True)
 
 terminator_df[~terminator_df.index.isin(buckaroo_df.index)]
 
+
+
+#%%
 """## Pandas DataFrame: Select rows by an attribute of a column value
 
 Use the Series `map()` method.
@@ -297,6 +358,9 @@ df = pd.DataFrame({
 
 df[df['last_name'].map(len) == 5]
 
+
+
+#%%
 """## Pandas DataFrame: Sort the count of rows grouped on columns"""
 
 import pandas as pd
@@ -307,6 +371,9 @@ df = pd.DataFrame({
 
 df.groupby(['last_name']).size().sort_values(ascending=False)
 
+
+
+#%%
 """## Pandas DataFrame: Reshape to have 1 row per value in a list column
 
 Creates a new DataFrame that is a transformed version of the input. E.g.
@@ -330,6 +397,9 @@ new_df = temp_series.to_frame()
 new_df.set_index('msg_id', inplace=True)
 new_df.loc[~new_df.index.duplicated(), :] # Drop duplicates.
 
+
+
+#%%
 """## Pandas: DataFrames: Group Timeseries by Frequency
 
 You can group timestamped data into intervals of arbitrary duration using a Grouper object to specify groupby instructions.  The `freq` parameter is a string that may contain an integer followed by an [offset alias](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases).  E.g. To see output for 2 minute long intervals:
