@@ -2,8 +2,7 @@
 import openai
 import requests
 
-# openai.api_key = "YOUR_API_KEY"
-openai.api_key = "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"
+openai.api_key = "YOUR_API_KEY"
 
 prompt = "Hello, how are you?"
 
