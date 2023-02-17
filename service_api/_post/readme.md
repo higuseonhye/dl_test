@@ -9,4 +9,4 @@ ChatGPT 뿐만 아니라 어떠한 ML 모델을 기반 프로덕트를 만들 �
 5. 얼마나 속도에 민감한가
 6. 데이터에 대한 법적 책임은 어떻게 되나
 
-# Source: https://jiho-ml.com/chatgpt-product/
+Source: https://jiho-ml.com/chatgpt-product/
