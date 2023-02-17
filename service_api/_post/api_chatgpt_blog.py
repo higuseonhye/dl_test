@@ -161,3 +161,9 @@ filepath
 with open(filepath, 'w') as f:
     f.write(output)
     f.close()
+    
+    
+"""
+Reference
+[1] https://teddylee777.github.io/python/chatgpt-blog-automation/
+"""
