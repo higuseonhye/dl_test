@@ -19,4 +19,8 @@ response = requests.post("https://api.openai.com/v1/engines/davinci-codex/comple
 )
 
 print(response.json()["choices"][0]["text"])
-# %%
+
+"""
+Reference
+[1] https://twoicefish-secu.tistory.com/495
+"""
